@@ -11,7 +11,7 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 logo        : []
 url         : []
----
+--- .class #1
 
 
 
@@ -20,7 +20,7 @@ url         : []
 Using **slidify** in <b>R</b>
 
 
---- .class x:3000 y:0 scale:2
+--- .class #2 x:3000 y:0 scale:2
 
 ## Regular plotting
 
@@ -35,13 +35,13 @@ abline(h=0,col='black')
 
 ![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2.png) 
 
---- .class x:0 y:-2000 scale:2 rot:45
+--- .class #3 x:0 y:-2000 scale:2 rot:45
 
 ## GGPLOT2
 
 ![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3.png) 
 
---- .class x:-2000 y:-2000 scale:1 rot:-45
+--- .class #4 x:-2000 y:-2000 scale:1 rot:-45
 
 ## Do a Unit Root Test
 
@@ -60,14 +60,14 @@ print(adft)
 ## alternative hypothesis: stationary
 ```
 
---- .class x:3000 y:-4000 scale:4 rot:180
+--- .class #5 x:3000 y:-4000 scale:4 rot:180
 
 ## Formulae with MathJax
 
   1. **$Y=X\beta + \epsilon$**
   2. $\frac{-\beta \pm \sqrt{\beta^2-4\alpha\gamma}}{2\alpha}$
 
---- .class x:2000 y:3000 scale:2 rot:-180
+--- .class #6 x:2000 y:3000 scale:2 rot:-180
 
 ## iGraph
 
@@ -82,7 +82,7 @@ plot.igraph(g, layout=layout.fruchterman.reingold,
             main="Preferential Attachment Model\nBarabasi Random Graph")
 ```
 
---- .class .class x:-3000 y:2000 scale:8
+--- .class #7 x:-3000 y:2000 scale:8
 
 ## iGraph
 

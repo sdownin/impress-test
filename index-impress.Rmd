@@ -1,0 +1,92 @@
+---
+title       : impress.js
+subtitle    : Testing impress.js with Slidify
+author      : Stephen
+job         : researcher
+framework   : impressjs       # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : zenburn     # {tomorrow, zenburn}
+widgets     : mathjax            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+logo        : []
+url         : []
+---
+
+```{r,eval=T,echo=F}
+library(knitr)
+library(tseries)
+library(igraph)
+library(ggplot2)
+```
+
+## Testing Impress.js 
+
+Using **slidify** in <b>R</b>
+
+
+--- .class x:3000 y:0 scale:2
+
+## Regular plotting
+
+```{r}
+x <- rnorm(1000,0,5)
+plot(cumsum(x),main="Gaussian Walk",col='red',
+     ylab=expression(Sigma[t]*x[t]),
+     xlab='t',type='l')
+abline(h=0,col='black')
+```
+
+--- .class x:0 y:-2000 scale:2 rot:45
+
+## GGPLOT2
+
+```{r, eval=T, echo=F}
+df <- data.frame(x=1:1000,y=rnorm(1000,0,5),sumy=cumsum(df$y))
+p <- ggplot(aes(x=x,y=sumy), data=df) + geom_line(col='red') + geom_hline(aes(h=0)) + ggtitle("Gaussian Walk")
+p
+```
+
+--- .class x:-2000 y:-2000 scale:1 rot:-45
+
+## Do a Unit Root Test
+
+```{r}
+adft <- adf.test(x = cumsum(x),alternative = 'stationary')
+print(adft)
+```
+
+--- .class x:3000 y:-4000 scale:4 rot:180
+
+## Formulae with MathJax
+
+  1. **$Y=X\beta + \epsilon$**
+  2. $\frac{-\beta \pm \sqrt{\beta^2-4\alpha\gamma}}{2\alpha}$
+
+--- .class x:2000 y:3000 scale:2 rot:-180
+
+## iGraph
+
+```{r, eval=F, echo=T}
+g <- barabasi.game(n = 20, power = 1.1, m = 3, directed = T)
+par(mar=c(.5,.5,2.2,.5))
+plot.igraph(g, layout=layout.fruchterman.reingold,
+            vertex.size=degree(g)*2,edge.arrow.size=.5,
+            edge.color='dark gray',vertex.color='dark blue',
+            vertex.label.color='white',
+            main="Preferential Attachment Model\nBarabasi Random Graph")
+```
+
+--- .class .class x:-3000 y:2000 scale:8
+
+## iGraph
+
+```{r, eval=T, echo=F}
+g <- barabasi.game(n = 20, power = 1.1, m = 3, directed = T)
+par(mar=c(.5,.5,2.2,.5))
+plot.igraph(g, layout=layout.fruchterman.reingold,
+            vertex.size=degree(g)*2,edge.arrow.size=.5,
+            edge.color='dark gray',vertex.color='dark blue',
+            vertex.label.color='white',
+            main="Preferential Attachment Model\nBarabasi Random Graph")
+```

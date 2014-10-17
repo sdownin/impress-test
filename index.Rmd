@@ -1,0 +1,89 @@
+---
+title       : Test-Impress.js
+subtitle    : testing impress.js with Slidify
+author      : Stephen
+job         : researcher
+framework   : deckjs     # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : zenburn     # 
+widgets     : [mathjax,bootstrap]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+```{r,eval=T,echo=F}
+library(knitr)
+library(tseries)
+library(igraph)
+library(ggplot2)
+```
+
+## Testing Impress.js 
+
+Using *slidify* in **R**
+
+--- .class #id 
+
+### Regular plotting
+
+```{r}
+x <- rnorm(1000,0,5)
+plot(cumsum(x),main="Gaussian Walk",col='red',
+     ylab=expression(Sigma[t]*x[t]),
+     xlab='t',type='l')
+abline(h=0,col='black')
+```
+
+--- .class #id 
+
+## GGPLOT2
+
+```{r, eval=T, echo=F}
+df <- data.frame(x=1:1000,y=rnorm(1000,0,5),sumy=cumsum(df$y))
+p <- ggplot(aes(x=x,y=sumy), data=df) + geom_line(col='red') + geom_hline(aes(h=0)) + ggtitle("Gaussian Walk")
+p
+```
+
+--- .class #id
+
+## Run Some Tests
+```{r}
+adft <- adf.test(x = cumsum(x),alternative = 'stationary')
+print(adft)
+```
+
+--- .class #id
+
+## Formulae
+
+1. **$Y=X\beta + \epsilon$**
+2. $\frac{-\beta \pm \sqrt{\beta^2-4\alpha\gamma}}{2\alpha}$
+
+--- .class #id
+
+## iGraph
+
+```{r, eval=F, echo=T}
+g <- barabasi.game(n = 20, power = 1.1, m = 3, directed = T)
+par(mar=c(.5,.5,2.2,.5))
+plot.igraph(g, layout=layout.fruchterman.reingold,
+            vertex.size=degree(g)*2,edge.arrow.size=.5,
+            edge.color='dark gray',vertex.color='dark blue',
+            vertex.label.color='white',
+            main="Preferential Attachment Model\nBarabasi Random Graph")
+```
+
+--- .class #id
+
+## iGraph
+
+```{r, eval=T, echo=F}
+g <- barabasi.game(n = 20, power = 1.1, m = 3, directed = T)
+par(mar=c(.5,.5,2.2,.5))
+plot.igraph(g, layout=layout.fruchterman.reingold,
+            vertex.size=degree(g)*2,edge.arrow.size=.5,
+            edge.color='dark gray',vertex.color='dark blue',
+            vertex.label.color='white',
+            main="Preferential Attachment Model\nBarabasi Random Graph")
+```
+
